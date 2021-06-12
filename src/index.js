@@ -2,11 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
+import Navbar from './Navbar';
+import AddContact from './AddContact';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <BrowserRouter>
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={App} />
+          <Route exact path="/add" component={AddContact} />
+        </Switch>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
